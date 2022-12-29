@@ -1,6 +1,7 @@
 import React from "react"
 
 import { slide as Menu } from 'react-burger-menu'
+import '../../css/navbar.css'
 
 const Navbar = () => {
 
