@@ -1,12 +1,11 @@
 import React from 'react'
-import './css/style.css'
-import Navbar from './components/Navbar/Navbar'
+// import Navbar from './components/navbar/Navbar'
 import Home from './page/home/Home'
 
 function App() {
   return (
     <main>
-        <Navbar />
+        {/* <Navbar /> */}
         <Home />
     </main>
   )
