@@ -1,16 +1,26 @@
+import { useState } from 'react'
 import './post.css'
+import { Users } from '../../dummyData'
 
-const Post = () => {
+const Post = ({post}) => {
+    const [isLiked,setIsLiked] = useState(false)
+    const [like,setLike] = useState(post.like)
+    const users = Users.filter(u=>u.id===post.userId)
+
+    const likehandler = () => {
+        setLike(isLiked ? like - 1: like + 1)
+        setIsLiked(!isLiked)
+    }
 
     return (
         <div className='post'>
             <div className='postWrapper'>
                 <div className='postTop'>
                     <div className='postTopLeft'>
-                        <img src='/assets/person/1.jpeg' alt='' className='postProfileImg' />
+                        <img src={users[0].profilePicture} alt='' className='postProfileImg' />
                         <div className='text'>
-                            <span className='postUsername'>Hot girl one</span>
-                            <span className='postDate'>5 mins ago</span>
+                            <span className='postUsername'>{users[0].username}</span>
+                            <span className='postDate'>{post.date}</span>
                         </div>
                     </div>
                     <div className='postTopRight'>
@@ -19,17 +29,17 @@ const Post = () => {
                     </div>
                 </div>
                 <div className='postCenter'>
-                    <span className='postText'>This is my post!</span>
-                    <img src='/assets/post/1.jpeg' alt='' className='postImg' />
+                    <span className='postText'>{post.desc}</span>
+                    <img src={post.photo} alt='' className='postImg' />
                 </div>
                 <div className='postBottom'>
                     <div className='postBottomLeft'>
-                        <img src='/assets/like.png' alt='' className='likeIcon' />
-                        <img src='/assets/heart.png' alt='' className='likeIcon' />
-                        <span className='postLikeCounter'>50 people like it</span>
+                        <img src='/assets/like.png' onClick={likehandler} alt='' className='likeIcon' />
+                        <img src='/assets/heart.png' onClick={likehandler} alt='' className='likeIcon' />
+                        <span className='postLikeCounter'>{like} people like it</span>
                     </div>
                     <div className='postBottomRight'>
-                        <span className='postCommentText'>30 comments</span>
+                        <span className='postCommentText'>{post.comment} comments</span>
                     </div>
                 </div>
             </div>
